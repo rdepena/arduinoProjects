@@ -1,4 +1,6 @@
-//use some red leds and you got a cylon looking somehting.
+/*
+	use some red leds and you got a cylon looking somehting.
+*/
 
 // pin 13 is a LED connected to most Arduino boards
 const int led = 13;
@@ -10,7 +12,7 @@ const int ledArray[] = {2, 3, 4, 5, 6, 7};
 const int button = 8;
 
 //we specify the time each led will remain on.
-const int delayTime = 120;
+const int delayTime = 30;
 
 //Array size is going to be the same during execution.
 //size of returns the amount of bytes a variable ocupies, 
