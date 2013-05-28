@@ -24,12 +24,6 @@ const int btnArray[] = {greenBtn, blueBtn, redBtn, yellowBtn};
 const int ledArrayLength = sizeof(ledArray) / sizeof(int);
 const int btnArrayLength = sizeof(btnArray) / sizeof(int);
 
-//DNR
-int getIntArrayLength (const int arr[]) {
-	//compensating for lack of length property.
-	return sizeof(arr) / sizeof(int);
-}
-
 //configure IO
 void setup () {
 
