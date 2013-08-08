@@ -1,5 +1,5 @@
 /*
-	use some red leds and you got a cylon looking somehting.
+	use some red leds and you got a cylon looking something.
 */
 
 // pin 13 is a LED connected to most Arduino boards
@@ -15,7 +15,7 @@ const int button = 8;
 const int delayTime = 30;
 
 //Array size is going to be the same during execution.
-//size of returns the amount of bytes a variable ocupies, 
+//size of returns the amount of bytes a variable occupies, 
 //we need to divide by the size of the variable type to get the length of the array.
 const int arraySize = (sizeof(ledArray) / sizeof(int));
 
