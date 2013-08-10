@@ -4,7 +4,7 @@
 
 // pin 13 is a LED connected to most Arduino boards
 // I plan to use this as a 'waiting for input' indicator.
-//const int led = 13;
+const int led = 13;
 
 //our connected leds.
 const int greenLed = 7;
