@@ -32,14 +32,15 @@ int turnArray[256];
 
 //configure IO
 void setup() {
+	
 	//Configure the serial for debugging. 
 	Serial.begin(9600);
+	
 	//Configure random:
-	//we are not using pin 0 so we commit it to generate seed numbers.
 
+	//we are not using pin 0 so we commit it to generate seed numbers.
 	randomSeed(analogRead(0));
 	
-
 	//we use the led array to assign both buttons and leds cause I assume they are the same length.
 	for (int i = 0; i < ledArrayLength; i++) {
 		//set the leds.
@@ -60,31 +61,30 @@ void lost() {
 void loop() {
 	
 	bool waitingForInput = false;
-
 	//adds a turn to our count
-	turnCount = 1;
-
+	turnCount = 0;
 	bool keeplaying = true;
 
-	//waiting for user input?
+	//the game loop.
 	while (keeplaying == true) {
 
 		//crate a random number form 0 to the ledArrayLength
 		turnArray[turnCount] = random(ledArrayLength);
 
 		//we display the random sequence.
-		for (int i = 0; i < turnCount; i++) {
+		for (int i = 0; i < turnCount + 1; i++) {
 			//turn that random led on.
 			digitalWrite(ledArray[turnArray[i]], HIGH);
 
 			delay(delayTime);
+
 			//turn the led off.
 			digitalWrite(ledArray[turnArray[i]], LOW);
 			delay(delayTime);
 		}
 	
 		//the players turn:
-		for (int x = 0; x < turnCount; x++) {
+		for (int x = 0; x < turnCount + 1; x++) {
 			waitingForInput = true;
 			//waiting for the player to press a button.
 			while(waitingForInput == true) {
