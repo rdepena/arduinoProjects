@@ -2,3 +2,4 @@
 uno/
 .*
 !/.gitignore
+node_modules
