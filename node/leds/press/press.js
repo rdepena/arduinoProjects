@@ -19,7 +19,7 @@ var IoCombo = function (buttonPin, ledPin) {
 
 	//we return this new IO combo ready to be used.
 	return my;
-}
+};
 
 board.on("ready", function () {
 	var buttonPins = [11, 10, 9, 8],
@@ -31,5 +31,5 @@ board.on("ready", function () {
 	for (i = 0; i < buttonPins.length; i+=1) {
 		//we really don't need this list but adding it just to have a record of these objects.
 		ioCombos.push(new IoCombo(buttonPins[i], ledPins[i]));
-	};
+	}
 });

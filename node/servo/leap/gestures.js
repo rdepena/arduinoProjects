@@ -14,11 +14,14 @@ var gestures = function () {
 		return false;
 	};
 
+	var isHandPresent = function (frame) {
+		return frame.hands[0].valid;
+	};
+
 	var palmPosition = function (frame) {
 		return {
 			x : frame.hands[0].stabilizedPalmPosition[0],
 			y : frame.hands[0].stabilizedPalmPosition[1],
-			//at the moment I am only interested in x and y but including z.
 			z : frame.hands[0].stabilizedPalmPosition[2]
 		};
 	};
@@ -31,7 +34,6 @@ var gestures = function () {
 		};
 	};
 
-	//TODO: determine the angle of the two points.
 	var pointDelta = function (frame) {
 
 		var palm = palmPosition(frame);
@@ -44,23 +46,14 @@ var gestures = function () {
 		};
 	};
 
-	//this is not correct, need to determine the correct approach.
-	var pointAngle = function (frame) {
-		var deltas = pointDelta(frame);
-		console.log(deltas.y);
-		console.log(deltas.x);
-		var atan = Math.atan2(deltas.y / deltas.x);
-		var angleInDegrees = atan * 180 / Math.PI;
-
-		return angleInDegrees;
-	};
 
 	my.processFrame = function (frame) {
 		var isValid = isFrameValid(frame);
 		return {
 			isFrameValid : isValid,
 			pointDirection : isValid ? pointDelta(frame) : null,
-			pointAngle : isValid ? pointAngle(frame) : null
+			isHandPresent : isValid ? isHandPresent(frame) : null
+
 		};
 	};
 

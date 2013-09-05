@@ -14,7 +14,6 @@
 			processedFrame = null,
 			hand = null;
 
-		components.led.on();
 		controller.on('frame', function (frame) {
 			i += 1;
 			//we only want to capture i % x frames per second.
@@ -24,6 +23,13 @@
 					hand = processedFrame.pointDirection;
 					components.servoX.move(hand.x);
 					components.servoY.move(hand.y);
+
+					if(processedFrame.isHandPresent) {
+						components.led.on();
+					}
+				}
+				else {
+					components.led.off();
 				}
 			}
 		});
