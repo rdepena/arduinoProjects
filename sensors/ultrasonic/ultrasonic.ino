@@ -26,22 +26,24 @@ const int bluePin = 8;
 NewPing sonar(trigger, echo, maxDistance);
 
 void setup() {
-
 	Serial.begin(9600); 
 }
 
+//led turns blue
 void ledBlue() {
         analogWrite(redPin, 0);
         analogWrite(greenPin, 0);
         analogWrite(bluePin, 150);
 }
 
+//led turns lilac
 void ledLilac() {
         analogWrite(redPin, 250);
         analogWrite(greenPin, 0);
         analogWrite(bluePin, 250);
 }
 
+//led turns red
 void ledRed() {
         analogWrite(redPin, 250);
         analogWrite(greenPin, 0);
