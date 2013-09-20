@@ -3,6 +3,7 @@
 var gestures = function () {
 	"use strict";
 
+	var pointables = require('./pointables.js')();
 	var my = {};
 	var gestureEvents = [];
 	var lastPublishedEventTime = null;
@@ -16,42 +17,6 @@ var gestures = function () {
 		return true;
 	};
 
-	//validate frame
-	var isFrameValid = function (frame) {
-		if (frame.pointables && frame.pointables[0] && frame.hands && frame.hands[0]) {
-			if(frame.pointables.length === 1) {
-				return frame.pointables[0].valid && frame.hands[0].valid;
-			}
-		}
-		return false;
-	};
-
-	var palmPosition = function (frame) {
-		return {
-			x : frame.hands[0].stabilizedPalmPosition[0],
-			y : frame.hands[0].stabilizedPalmPosition[1],
-			z : frame.hands[0].stabilizedPalmPosition[2]
-		};
-	};
-
-	var tipPosition = function (frame) {
-		return {
-			x : frame.pointables[0].stabilizedTipPosition[0],
-			y : frame.pointables[0].stabilizedTipPosition[1],
-			z : frame.pointables[0].stabilizedTipPosition[2]
-		};
-	};
-
-	var pointDelta = function (frame) {
-		var palm = palmPosition(frame);
-		var	tip = tipPosition(frame);
-
-		return {
-			x : palm.x - tip.x,
-			y : palm.y - tip.y,
-			z : palm.x - tip.x
-		};
-	};
 
 	//invoke the callbacks for a specified gesture.
 	var publishGesture = function (gesture) {
@@ -84,13 +49,10 @@ var gestures = function () {
 	};
 
 	my.processFrame = function (frame) {
-		var isValid = isFrameValid(frame);
 		processGestures(frame);
-		return {
-			isFrameValid : isValid,
-			pointDirection : isValid ? pointDelta(frame) : null
-
-		};
+		return { 
+			pointables : pointables.processFrame(frame) 
+		}
 	};
 
 	return my;
