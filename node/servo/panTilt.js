@@ -23,7 +23,7 @@
 		//control the frames per second.
 		var i = 0,
 			processedFrame = null,
-			direcction = null;
+			direction = null;
 
 		//react to the circle event.
 		gestures.on('circle', function () {
@@ -39,9 +39,9 @@
 				processedFrame = gestures.processFrame(frame);
 				//we only want to react to valid frames.
 				if (processedFrame.isFrameValid) {
-					direcction = processedFrame.pointables.pointDirection;
-					components.servoX.move(direcction.x);
-					components.servoY.move(direcction.y);
+					direction = processedFrame.pointDirection;
+					components.servoX.move(direction.x);
+					components.servoY.move(direction.y);
 				}
 			}
 		});

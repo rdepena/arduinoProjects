@@ -50,9 +50,11 @@ var gestures = function () {
 
 	my.processFrame = function (frame) {
 		processGestures(frame);
+		var pointable = pointables.processFrame(frame);
 		return { 
-			pointables : pointables.processFrame(frame) 
-		}
+			isFrameValid : pointable.isValid,
+			pointDirection : pointable.pointDirection  
+		};
 	};
 
 	return my;

@@ -43,7 +43,7 @@ var pointables = function () {
 	my.processFrame = function (frame) {
 		var isValid = isFrameValid(frame);
 		return {
-			isFrameValid : isValid,
+			isValid : isValid,
 			pointDirection : isValid ? pointDelta(frame) : null
 
 		};
