@@ -13,7 +13,7 @@ var components = function () {
 
 	my.servoX = null;
 	my.servoY = null;
-	my.led =  null;
+	my.laser =  null;
 
 	//we set up the components once the board is ready.
 	my.board.on("ready", function () {
@@ -24,7 +24,7 @@ var components = function () {
 			pin : 10
 		});
 
-		my.led = five.Led(7);
+		my.laser = five.Led(7);
 	});
 
 	return my;

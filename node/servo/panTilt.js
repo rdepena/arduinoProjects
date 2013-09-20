@@ -3,9 +3,20 @@
 (function () {
 	"use strict";
 	var Leap = require("leapjs"),
-		controller = new Leap.Controller(),
+		controller = new Leap.Controller({enableGestures: true}	),
 		gestures = require("./leap/gestures.js")(),
-		components = require("./arduino/components.js")();
+		components = require("./arduino/components.js")(),
+		isLaserOn = false;
+
+		//we want to be able to toggle the laser.
+	var toggleLaser = function (laser) {
+		if(isLaserOn) {
+			laser.off();
+		} else {
+			laser.on();
+		}
+		isLaserOn = !isLaserOn;
+	};
 
 	//when the board is ready we will listen to the leapmotion controller:
 	components.board.on("ready", function () {
@@ -13,6 +24,10 @@
 		var i = 0,
 			processedFrame = null,
 			hand = null;
+
+		gestures.on('circle', function () {
+			toggleLaser(components.laser);
+		});
 
 		controller.on('frame', function (frame) {
 			i += 1;
@@ -23,13 +38,6 @@
 					hand = processedFrame.pointDirection;
 					components.servoX.move(hand.x);
 					components.servoY.move(hand.y);
-
-					if(processedFrame.isHandPresent) {
-						components.led.on();
-					}
-				}
-				else {
-					components.led.off();
 				}
 			}
 		});
