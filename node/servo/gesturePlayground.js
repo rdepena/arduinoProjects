@@ -9,7 +9,7 @@
 	//control the frames per second.
 	var i = 0,
 		processedFrame = null,
-		hand = null;
+		direction = null;
 
 	gestures.on('circle', function () {
 		console.log('this happened');
@@ -20,7 +20,9 @@
 		if (i % 60 === 0) {
 			processedFrame = gestures.processFrame(frame);
 			if (processedFrame.isFrameValid) {
-				
+				direction = processedFrame.pointDirection;
+				console.log(direction.x);
+				console.log(direction.y);
 			}
 		}
 	});

@@ -40,7 +40,8 @@
 				//we only want to react to valid frames.
 				if (processedFrame.isFrameValid) {
 					direction = processedFrame.pointDirection;
-					components.servoX.move(direction.x);
+					//we add 180 to compensate to the sevo center
+					components.servoX.move(direction.x + 120);
 					components.servoY.move(direction.y);
 				}
 			}
